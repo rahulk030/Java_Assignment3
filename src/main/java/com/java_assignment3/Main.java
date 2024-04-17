@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("convert_view.fxml"));
-        primaryStage.setTitle("Conversion App"); // Custom title
+        primaryStage.setTitle("Conversion App"); // title
         primaryStage.setScene(new Scene(root, 400, 300)); // Set width and height
         primaryStage.show();
     }
