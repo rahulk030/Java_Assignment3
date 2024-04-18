@@ -25,52 +25,68 @@ public class ConvertController {
 
     private ConvertModel convertModel;
 
-    // Constructor to initialize ConvertModel
     public ConvertController() {
         this.convertModel = new ConvertModel();
     }
 
-    // Method to initialize the UI components
     @FXML
     public void initialize() {
-        // Populate choice boxes with options
         conversionTypeChoiceBox.getItems().addAll("Weight", "Temperature");
         conversionOptionChoiceBox.getItems().addAll("LB to KG", "KG to LB", "Celsius to Fahrenheit", "Fahrenheit to Celsius");
-
-        // Set default selections
         conversionTypeChoiceBox.getSelectionModel().selectFirst();
         conversionOptionChoiceBox.getSelectionModel().selectFirst();
     }
 
-    // Method to handle conversion button click
     @FXML
     public void handleConvertButton() {
-        // Get the input value from the text field
         String inputValueStr = inputValueField.getText();
-        // Parse the input value as a double
-        double inputValue = Double.parseDouble(inputValueStr);
+        double inputValue = 0.0;
 
-        // Determine the conversion type (Weight or Temperature)
+        try {
+            // Parse the input value as a double
+            inputValue = Double.parseDouble(inputValueStr);
+        } catch (NumberFormatException e) {
+            // Display error message if input is not a valid number
+            resultLabel.setText("Invalid input! Please enter a valid number.");
+            return;
+        }
+
         String conversionType = conversionTypeChoiceBox.getValue();
-        // Determine the conversion option selected
         String conversionOption = conversionOptionChoiceBox.getValue();
+        double result = 0.0;
+
+        // Check if conversionType or conversionOption is null
+        if (conversionType == null || conversionOption == null) {
+            // Display error message if either choice is not selected
+            resultLabel.setText("Please select both conversion type and option.");
+            return;
+        }
 
         // Perform the conversion based on the selected conversion type and option
-        double result = 0.0;
         if (conversionType.equals("Weight")) {
-            // If it's a weight conversion
             if (conversionOption.equals("LB to KG")) {
                 result = convertModel.getMass(inputValue, 1); // Convert pounds to kilograms
             } else if (conversionOption.equals("KG to LB")) {
                 result = convertModel.getMass(inputValue, 2); // Convert kilograms to pounds
+            } else {
+                // Display error message for invalid option
+                resultLabel.setText("Invalid conversion option selected for weight.");
+                return;
             }
         } else if (conversionType.equals("Temperature")) {
-            // If it's a temperature conversion
             if (conversionOption.equals("Celsius to Fahrenheit")) {
                 result = convertModel.getTemperature(inputValue, 1); // Convert Celsius to Fahrenheit
             } else if (conversionOption.equals("Fahrenheit to Celsius")) {
                 result = convertModel.getTemperature(inputValue, 2); // Convert Fahrenheit to Celsius
+            } else {
+                // Display error message for invalid option
+                resultLabel.setText("Invalid conversion option selected for temperature.");
+                return;
             }
+        } else {
+            // Display error message for invalid conversion type
+            resultLabel.setText("Invalid conversion type selected.");
+            return;
         }
 
         // Update the result label with the converted value
