@@ -25,13 +25,15 @@ public class ConvertController {
 
     private ConvertModel convertModel;
 
+    // Constructor to initialize ConvertModel
     public ConvertController() {
         this.convertModel = new ConvertModel();
     }
 
+    // Method to initialize the UI components
     @FXML
     public void initialize() {
-        // Populate choice boxes
+        // Populate choice boxes with options
         conversionTypeChoiceBox.getItems().addAll("Weight", "Temperature");
         conversionOptionChoiceBox.getItems().addAll("LB to KG", "KG to LB", "Celsius to Fahrenheit", "Fahrenheit to Celsius");
 
@@ -40,6 +42,7 @@ public class ConvertController {
         conversionOptionChoiceBox.getSelectionModel().selectFirst();
     }
 
+    // Method to handle conversion button click
     @FXML
     public void handleConvertButton() {
         // Get the input value from the text field

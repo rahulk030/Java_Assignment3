@@ -1,6 +1,8 @@
 package com.java_assignment3;
 
 public class ConvertModel {
+
+    // Methods for weight conversions
     public double getKilogramValue(double poundValue) {
         // Conversion formula: 1 pound = 0.45359237 kilograms
         return poundValue * 0.45359237;
@@ -11,6 +13,7 @@ public class ConvertModel {
         return kilogramValue * 2.20462262;
     }
 
+    // Methods for temperature conversions
     public double getFahrenheitValue(double celsiusValue) {
         // Conversion formula: °F = (°C * 9/5) + 32
         return (celsiusValue * 9 / 5) + 32;
@@ -21,8 +24,10 @@ public class ConvertModel {
         return (fahrenheitValue - 32) * 5 / 9;
     }
 
+    // Method to get temperature conversion based on user choice
     public double getTemperature(double value, int choice) {
         double result = 0.0; // Default result
+
         // Check user choice
         if (choice == 1) {
             // Convert Celsius to Fahrenheit if choice is 1
@@ -34,12 +39,15 @@ public class ConvertModel {
             // Display error message for invalid choice
             System.err.println("Invalid Choice! Only 1 or 2 is allowed");
         }
+
         // Return the converted temperature value
         return result;
     }
 
+    // Method to get mass conversion based on user choice
     public double getMass(double value, int choice) {
         double result = 0.0; // Default result
+
         // Check user choice
         if (choice == 1) {
             // Convert pounds to kilograms if choice is 1
@@ -51,6 +59,7 @@ public class ConvertModel {
             // Display error message for invalid choice
             System.err.println("Invalid Choice! Only 1 or 2 is allowed");
         }
+
         // Return the converted mass value
         return result;
     }

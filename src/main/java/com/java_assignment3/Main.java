@@ -10,13 +10,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Load the FXML file and create a scene
         Parent root = FXMLLoader.load(getClass().getResource("convert_view.fxml"));
-        primaryStage.setTitle("Conversion App"); // title
-        primaryStage.setScene(new Scene(root, 400, 300)); // Set width and height
+
+        // Set the title of the stage
+        primaryStage.setTitle("Conversion App");
+
+        // Set the scene with the loaded FXML file and specify dimensions
+        primaryStage.setScene(new Scene(root, 400, 300));
+
+        // Show the stage
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+        // Launch the JavaFX application
         launch(args);
     }
 }
