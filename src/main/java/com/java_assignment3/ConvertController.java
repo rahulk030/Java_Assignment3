@@ -55,12 +55,6 @@ public class ConvertController {
         String conversionOption = conversionOptionChoiceBox.getValue();
         double result = 0.0;
 
-        // Check if conversionType or conversionOption is null
-        if (conversionType == null || conversionOption == null) {
-            // Display error message if either choice is not selected
-            resultLabel.setText("Please select both conversion type and option.");
-            return;
-        }
 
         // Perform the conversion based on the selected conversion type and option
         if (conversionType.equals("Weight")) {
